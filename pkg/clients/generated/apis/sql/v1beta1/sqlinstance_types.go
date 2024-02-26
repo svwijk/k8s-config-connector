@@ -94,6 +94,22 @@ type InstanceBackupRetentionSettings struct {
 	RetentionUnit *string `json:"retentionUnit,omitempty"`
 }
 
+type InstanceClone struct {
+	/* The name of the allocated ip range for the private ip CloudSQL instance. For example: "google-managed-services-default". If set, the cloned instance ip will be created in the allocated range. The range name must comply with [RFC 1035](https://tools.ietf.org/html/rfc1035). Specifically, the name must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])?. */
+	// +optional
+	AllocatedIpRange *string `json:"allocatedIpRange,omitempty"`
+
+	/* (SQL Server only, use with point_in_time) clone only the specified databases from the source instance. Clone all databases if empty. */
+	// +optional
+	DatabaseNames []string `json:"databaseNames,omitempty"`
+
+	/* The timestamp of the point in time that should be restored. */
+	// +optional
+	PointInTime *string `json:"pointInTime,omitempty"`
+
+	SourceInstanceRef v1alpha1.ResourceRef `json:"sourceInstanceRef"`
+}
+
 type InstanceDataCacheConfig struct {
 	/* Whether data cache is enabled for the instance. */
 	// +optional
@@ -430,6 +446,10 @@ type InstanceValueFrom struct {
 }
 
 type SQLInstanceSpec struct {
+	/* Configuration for creating a new instance as a clone of another instance. */
+	// +optional
+	Clone *InstanceClone `json:"clone,omitempty"`
+
 	/* The MySQL, PostgreSQL or SQL Server (beta) version to use. Supported values include MYSQL_5_6, MYSQL_5_7, MYSQL_8_0, POSTGRES_9_6, POSTGRES_10, POSTGRES_11, POSTGRES_12, POSTGRES_13, POSTGRES_14, POSTGRES_15, SQLSERVER_2017_STANDARD, SQLSERVER_2017_ENTERPRISE, SQLSERVER_2017_EXPRESS, SQLSERVER_2017_WEB. Database Version Policies includes an up-to-date reference of supported versions. */
 	// +optional
 	DatabaseVersion *string `json:"databaseVersion,omitempty"`

@@ -81,7 +81,7 @@ spec:
                     description: The timestamp of the point in time that should be
                       restored.
                     type: string
-                  sourceInstanceNameRef:
+                  sourceInstanceRef:
                     oneOf:
                     - not:
                         required:
@@ -109,7 +109,7 @@ spec:
                         type: string
                     type: object
                 required:
-                - sourceInstanceNameRef
+                - sourceInstanceRef
                 type: object
               databaseVersion:
                 default: MYSQL_5_6

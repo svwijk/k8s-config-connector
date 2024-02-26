@@ -27,6 +27,13 @@ func init() {
 		ResourceKind:       "SQLInstance",
 	}
 
+	resourceContextMap["sqlserverclone"] = ResourceContext{
+		// SQL instances names are reserved for 1 week after use: https://cloud.google.com/sql/docs/mysql/delete-instance
+		SkipDriftDetection: true,
+		ResourceKind:       "SQLInstance",
+		SkipUpdate:         true,
+	}
+
 	resourceContextMap["sqldatabase"] = ResourceContext{
 		ResourceKind: "SQLDatabase",
 	}
