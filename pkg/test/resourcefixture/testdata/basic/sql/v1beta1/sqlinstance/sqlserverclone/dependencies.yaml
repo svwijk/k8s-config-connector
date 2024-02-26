@@ -18,8 +18,6 @@ metadata:
   name: sqlinstance-sample-${uniqueId}
 spec:
   region: us-central1
-  databaseVersion: SQLSERVER_2017_EXPRESS
+  databaseVersion: POSTGRES_15
   settings:
     tier: db-custom-1-3840
-  rootPassword:
-    value: "1234"

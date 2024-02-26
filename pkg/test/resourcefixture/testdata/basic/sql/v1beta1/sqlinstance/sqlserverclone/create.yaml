@@ -20,7 +20,7 @@ metadata:
   name: sqlinstance-replica-${uniqueId}
 spec:
   region: us-central1
-  databaseVersion: SQLSERVER_2017_EXPRESS
+  databaseVersion: POSTGRES_15
   clone:
     sourceInstanceRef:
       name: sqlinstance-sample-${uniqueId}
